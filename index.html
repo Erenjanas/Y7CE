@@ -267,12 +267,12 @@
         @keyframes text-shimmer {
             0%, 100% { 
                 text-shadow: 0 0 40px rgba(255,255,255,0.15), 0 0 80px rgba(255,255,255,0.05);
-                letter-spacing: 6px;
+                letter-spacing: 10px;
                 opacity: 0.9;
             }
             50% { 
                 text-shadow: 0 0 50px rgba(255,255,255,0.3), 0 0 100px rgba(255,255,255,0.1);
-                letter-spacing: 10px;
+                letter-spacing: 14px;
                 opacity: 1;
             }
         }
@@ -351,6 +351,319 @@
         .social-btn:hover svg {
             transform: scale(1.15);
         }
+
+        /* Music Player */
+        .music-player {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(255,255,255,0.015);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 16px;
+            backdrop-filter: blur(20px);
+            animation: fade-in-up 1s ease-out 0.7s both;
+        }
+
+        .music-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .music-cover {
+            width: 48px;
+            height: 48px;
+            border-radius: 6px;
+            background: #1a1a1a;
+            object-fit: cover;
+            animation: cover-spin 10s linear infinite paused;
+            flex-shrink: 0;
+        }
+
+        .music-cover.playing {
+            animation-play-state: running;
+        }
+
+        @keyframes cover-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .music-info {
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        .music-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .music-artist {
+            font-size: 11px;
+            color: #444;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 3px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 2px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+            animation: shimmer 2.5s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, rgba(255,255,255,0.8), rgba(255,255,255,0.3));
+            border-radius: 2px;
+            transition: width 0.1s linear;
+            position: relative;
+            z-index: 1;
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #333;
+            margin-top: 6px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .control-btn {
+            background: none;
+            border: none;
+            color: #444;
+            cursor: pointer;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            border-radius: 50%;
+        }
+
+        .control-btn:hover {
+            color: #ccc;
+            transform: scale(1.1);
+        }
+
+        .control-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .play-btn {
+            width: 44px;
+            height: 44px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+        }
+
+        .play-btn:hover {
+            background: rgba(255,255,255,0.1);
+            transform: scale(1.08);
+            box-shadow: 0 0 25px rgba(255,255,255,0.08);
+        }
+
+        .play-btn svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        /* Views */
+        .views {
+            font-size: 11px;
+            color: #2a2a2a;
+            margin-top: 8px;
+            animation: fade-in-up 1s ease-out 0.9s both;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        /* Volume */
+        .volume-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            justify-content: center;
+        }
+
+        .volume-slider {
+            width: 90px;
+            height: 3px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(255,255,255,0.06);
+            border-radius: 2px;
+            outline: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 8px rgba(255,255,255,0.2);
+            transition: transform 0.15s;
+        }
+
+        .volume-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.4);
+        }
+
+        /* Fade in animations */
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Equalizer bars */
+        .equalizer {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 18px;
+            margin-left: auto;
+            flex-shrink: 0;
+            opacity: 0.2;
+            transition: opacity 0.3s;
+        }
+
+        .equalizer.active {
+            opacity: 0.6;
+        }
+
+        .eq-bar {
+            width: 2px;
+            background: linear-gradient(to top, rgba(255,255,255,0.6), transparent);
+            border-radius: 1px;
+            animation: eq-bounce 0.6s ease-in-out infinite alternate;
+        }
+
+        .eq-bar:nth-child(1) { height: 6px; animation-delay: 0s; }
+        .eq-bar:nth-child(2) { height: 12px; animation-delay: 0.12s; }
+        .eq-bar:nth-child(3) { height: 8px; animation-delay: 0.24s; }
+        .eq-bar:nth-child(4) { height: 14px; animation-delay: 0.18s; }
+        .eq-bar:nth-child(5) { height: 5px; animation-delay: 0.06s; }
+
+        @keyframes eq-bounce {
+            0% { transform: scaleY(0.3); opacity: 0.2; }
+            100% { transform: scaleY(1); opacity: 0.8; }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            animation: bounce 2.5s ease-in-out infinite;
+            z-index: 5;
+            opacity: 0.4;
+            transition: opacity 0.5s;
+        }
+
+        .scroll-indicator span {
+            font-size: 9px;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .scroll-arrow {
+            width: 16px;
+            height: 16px;
+            border-right: 1.5px solid #333;
+            border-bottom: 1.5px solid #333;
+            transform: rotate(45deg);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1a1a1a;
+            border-radius: 2px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #222;
+        }
+
+
 
         /* Music Player - Cassette/CD Style */
         .music-player {
@@ -625,7 +938,7 @@
             100% { transform: scaleY(1); opacity: 0.8; }
         }
 
-        /* Corner Credit - M🫶 */
+        /* Corner Credit - OĞLUŞUM: YUSUF ATALAY */
         .corner-credit {
             position: fixed;
             bottom: 20px;
@@ -668,12 +981,12 @@
 
         .credit-name {
             font-size: 10px;
+            display: none;
             font-weight: 600;
             color: #666;
             text-transform: uppercase;
             letter-spacing: 2px;
             animation: credit-glow 3s ease-in-out infinite;
-            display: none;
         }
 
         @keyframes corner-slide-in {
@@ -715,83 +1028,36 @@
             }
         }
 
-        /* Views */
-        .views {
-            font-size: 11px;
-            color: #2a2a2a;
-            margin-top: 8px;
-            animation: fade-in-up 1s ease-out 0.9s both;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-weight: 500;
-        }
-
-        /* Scroll indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            animation: bounce 2.5s ease-in-out infinite;
-            z-index: 5;
-            opacity: 0.4;
-            transition: opacity 0.5s;
-        }
-
-        .scroll-indicator span {
-            font-size: 9px;
-            color: #333;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-        }
-
-        .scroll-arrow {
-            width: 16px;
-            height: 16px;
-            border-right: 1.5px solid #333;
-            border-bottom: 1.5px solid #333;
-            transform: rotate(45deg);
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(8px); }
-        }
-
-        /* Fade in animations */
-        @keyframes fade-in-up {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
+        /* Mobile quote fix */
+        @media (max-width: 480px) {
+            .quote-section {
+                padding: 18px 14px;
+                margin: 18px 0 12px;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .quote-text {
+                font-size: 11px;
+                letter-spacing: 0.5px;
+            }
+            .corner-credit {
+                bottom: 12px;
+                right: 12px;
+                padding: 8px 12px;
+            }
+            .credit-label, .credit-sep, .credit-name {
+                font-size: 9px;
+                letter-spacing: 1px;
+            }
+            .music-player {
+                padding: 14px;
+            }
+            .cassette-wrapper {
+                width: 44px;
+                height: 44px;
+            }
+            .quote-text.second {
+                font-size: 10px;
             }
         }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #0a0a0a;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #1a1a1a;
-            border-radius: 2px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #222;
-        }
-
         /* Mobile fixes */
         @media (max-width: 480px) {
             .username {
@@ -821,23 +1087,9 @@
             .music-player {
                 padding: 14px;
             }
-
-            .cassette-wrapper {
-                width: 44px;
-                height: 44px;
-            }
-
-            .corner-credit {
-                bottom: 12px;
-                right: 12px;
-                padding: 8px 12px;
-            }
-            .credit-label, .credit-sep, .credit-name {
-                font-size: 9px;
-                letter-spacing: 1px;
-            }
         }
     </style>
+<base target="_blank">
 <base target="_blank">
 </head>
 <body>
@@ -889,6 +1141,8 @@
             </div>
 
             <!-- Music Player -->
+            <!-- Quote Section -->
+            <!-- Music Player -->
             <div class="music-player">
                 <div class="music-header">
                     <div class="cassette-wrapper">
@@ -936,7 +1190,7 @@
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="#333"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
                     <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50">
                 </div>
-            </div>
+            </div></div>
 
             <div class="views" id="views">0 Views</div>
         </div>
@@ -948,25 +1202,68 @@
         </div>
     </div>
 
-    <!-- Corner Credit -->
-    <div class="corner-credit" id="cornerCredit">
-        <span class="credit-label">M</span>
-        <span class="credit-sep">🫶</span>
-        <span class="credit-name"></span>
-    </div>
-
     <!-- Audio Element -->
-    <!-- DOSYA ADLARI:
-         banner.mp4 / banner.jpg = Arka plan video/resim
-         avatar.mp4 / avatar.jpg = Profil fotoğrafı video/resim  
-         song.mp3 = Müzik dosyası
-         cover.jpg = Müzik albüm kapağı
-         Bu dosyaları kendi dosyalarınla değiştir, isimleri aynı kalacak şekilde. -->
+<!-- DOSYA ADLARI:
+     banner.mp4 / banner.jpg = Arka plan video/resim
+     avatar.mp4 / avatar.jpg = Profil fotoğrafı video/resim  
+     song.mp3 = Müzik dosyası
+     cover.jpg = Müzik albüm kapağı
+     Bu dosyaları kendi dosyalarınla değiştir, isimleri aynı kalacak şekilde. -->
     <audio id="bgAudio" loop preload="auto">
         <source src="song.mp3" type="audio/mpeg">
     </audio>
 
     <script>
+        // Generate particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 40; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 12 + 6) + 's';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            particle.style.width = (Math.random() * 2 + 1) + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.opacity = Math.random() * 0.4 + 0.1;
+            particlesContainer.appendChild(particle);
+        }
+
+        // Elements
+        const overlay = document.getElementById('clickOverlay');
+        const audio = document.getElementById('bgAudio');
+        const bannerVideo = document.getElementById('bannerVideo');
+        const bannerImg = document.getElementById('bannerImg');
+        const avatarVideo = document.getElementById('avatarVideo');
+        const avatarImg = document.getElementById('avatarImg');
+        const musicCover = document.getElementById('musicCover');
+        const equalizer = document.getElementById('equalizer');
+        const scrollIndicator = document.getElementById('scrollIndicator');
+
+        // Fallback: video yoksa image göster (güçlendirilmiş)
+        function showBannerImg() {
+            bannerVideo.style.display = 'none';
+            bannerImg.style.display = 'block';
+        }
+        function showAvatarImg() {
+            avatarVideo.style.display = 'none';
+            avatarImg.style.display = 'block';
+        }
+
+        bannerVideo.addEventListener('error', showBannerImg);
+        avatarVideo.addEventListener('error', showAvatarImg);
+
+        // Source elementi hata verirse de fallback
+        const bannerSource = bannerVideo.querySelector('source');
+        const avatarSource = avatarVideo.querySelector('source');
+        if (bannerSource) bannerSource.addEventListener('error', showBannerImg);
+        if (avatarSource) avatarSource.addEventListener('error', showAvatarImg);
+
+        // Yedek: Sayfa yüklendikten 1 saniye sonra video hâlâ yüklenmediyse img göster
+        setTimeout(function() {
+            if (bannerVideo.readyState === 0) showBannerImg();
+            if (avatarVideo.readyState === 0) showAvatarImg();
+        }, 1000);
+
         // Music Player Controls
         const playBtn = document.getElementById('playBtn');
         const playIcon = document.getElementById('playIcon');
@@ -1039,39 +1336,6 @@
         };
 
         // Click to reveal
-        const overlay = document.getElementById('clickOverlay');
-        const audio = document.getElementById('bgAudio');
-        const bannerVideo = document.getElementById('bannerVideo');
-        const bannerImg = document.getElementById('bannerImg');
-        const avatarVideo = document.getElementById('avatarVideo');
-        const avatarImg = document.getElementById('avatarImg');
-        const scrollIndicator = document.getElementById('scrollIndicator');
-
-        // Fallback: video yoksa image göster (güçlendirilmiş)
-        function showBannerImg() {
-            bannerVideo.style.display = 'none';
-            bannerImg.style.display = 'block';
-        }
-        function showAvatarImg() {
-            avatarVideo.style.display = 'none';
-            avatarImg.style.display = 'block';
-        }
-
-        bannerVideo.addEventListener('error', showBannerImg);
-        avatarVideo.addEventListener('error', showAvatarImg);
-
-        // Source elementi hata verirse de fallback
-        const bannerSource = bannerVideo.querySelector('source');
-        const avatarSource = avatarVideo.querySelector('source');
-        if (bannerSource) bannerSource.addEventListener('error', showBannerImg);
-        if (avatarSource) avatarSource.addEventListener('error', showAvatarImg);
-
-        // Yedek: Sayfa yüklendikten 1 saniye sonra video hâlâ yüklenmediyse img göster
-        setTimeout(function() {
-            if (bannerVideo.readyState === 0) showBannerImg();
-            if (avatarVideo.readyState === 0) showAvatarImg();
-        }, 1000);
-
         overlay.addEventListener('click', function() {
             overlay.classList.add('hidden');
 
@@ -1091,26 +1355,24 @@
             // Play avatar video
             avatarVideo.muted = false;
             avatarVideo.play().catch(e => console.log('Avatar video blocked:', e));
+
+            // Start cover spin
+            musicCover.classList.add('playing');
+
+            // Start equalizer
+            equalizer.classList.add('active');
         });
 
-        // Generate particles
-        const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 40; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDuration = (Math.random() * 12 + 6) + 's';
-            particle.style.animationDelay = Math.random() * 6 + 's';
-            particle.style.width = (Math.random() * 2 + 1) + 'px';
-            particle.style.height = particle.style.width;
-            particle.style.opacity = Math.random() * 0.4 + 0.1;
-            particlesContainer.appendChild(particle);
-        }
-
         // Views counter
+// Views counter
         const viewsEl = document.getElementById('views');
         const randomViews = Math.floor(Math.random() * 4000) + 200;
         viewsEl.textContent = randomViews + ' Views';
+
+        // Music cover fallback
+        musicCover.onerror = function() {
+            this.style.background = '#1a1a1a';
+        };
 
         // Hide scroll indicator on scroll
         window.addEventListener('scroll', function() {
