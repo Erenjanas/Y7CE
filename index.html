@@ -849,75 +849,111 @@
             50% { transform: translateX(-50%) translateY(8px); }
         }
 
-        .corner-credit {
+        /* Love Badge — M🫶 */
+        .love-badge {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 24px;
+            right: 24px;
+            z-index: 100;
             display: flex;
             align-items: center;
-            gap: 4px;
-            padding: 8px 14px;
-            background: rgba(255,255,255,0.03);
+            gap: 6px;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            animation: corner-slide-in 1.2s ease-out 1.5s both, corner-pulse 3s ease-in-out infinite 2.7s;
-            cursor: default;
-            transition: all 0.3s ease;
-        }
-
-        .corner-credit:hover {
-            background: rgba(255,255,255,0.06);
-            border-color: rgba(255,255,255,0.15);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-        }
-
-        .credit-label {
-            font-size: 10px;
-            font-weight: 700;
-            color: #444;
-            text-transform: uppercase;
+            border-radius: 50px;
+            backdrop-filter: blur(12px);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 800;
             letter-spacing: 3px;
-            animation: credit-flicker 4s ease-in-out infinite;
+            cursor: default;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: badge-entry 1s ease-out 1.8s both, badge-glow 3s ease-in-out infinite 2.8s;
         }
 
-        .credit-sep {
-            font-size: 10px;
-            color: #333;
-            font-weight: 600;
+        .love-badge:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 30px rgba(255,255,255,0.04);
         }
 
-        .credit-name {
-            font-size: 10px;
-            display: none;
-            font-weight: 600;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            animation: credit-glow 3s ease-in-out infinite;
+        .love-badge .letter-m {
+            background: linear-gradient(135deg, #ffffff 0%, #888888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: m-shimmer 3s ease-in-out infinite;
         }
 
-        @keyframes corner-slide-in {
-            from { opacity: 0; transform: translateX(40px) translateY(10px); }
-            to { opacity: 1; transform: translateX(0) translateY(0); }
+        .love-badge .heart-hands {
+            display: inline-block;
+            font-size: 16px;
+            animation: heartbeat 1.4s ease-in-out infinite;
+            filter: drop-shadow(0 0 8px rgba(255,80,80,0.25));
+            transform-origin: center;
         }
 
-        @keyframes corner-pulse {
-            0%, 100% { border-color: rgba(255,255,255,0.08); box-shadow: 0 0 0 rgba(255,255,255,0); }
-            50% { border-color: rgba(255,255,255,0.15); box-shadow: 0 0 20px rgba(255,255,255,0.03); }
+        @keyframes badge-entry {
+            from { opacity: 0; transform: translateX(40px) translateY(10px) scale(0.9); }
+            to { opacity: 1; transform: translateX(0) translateY(0) scale(1); }
         }
 
-        @keyframes credit-flicker {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
-            75% { opacity: 0.8; }
+        @keyframes badge-glow {
+            0%, 100% { 
+                border-color: rgba(255,255,255,0.08);
+                box-shadow: 0 0 0 rgba(255,255,255,0), inset 0 0 0 rgba(255,255,255,0);
+            }
+            50% { 
+                border-color: rgba(255,255,255,0.18);
+                box-shadow: 0 0 25px rgba(255,255,255,0.03), 0 0 50px rgba(255,255,255,0.01);
+            }
         }
 
-        @keyframes credit-glow {
-            0%, 100% { color: #666; text-shadow: 0 0 5px rgba(255,255,255,0.05); }
-            50% { color: #888; text-shadow: 0 0 15px rgba(255,255,255,0.1), 0 0 30px rgba(255,255,255,0.05); }
+        @keyframes m-shimmer {
+            0%, 100% { 
+                filter: brightness(1); 
+                transform: translateY(0);
+            }
+            50% { 
+                filter: brightness(1.2); 
+                transform: translateY(-1px);
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            10% { transform: scale(1.25); }
+            25% { transform: scale(1); }
+            40% { transform: scale(1.15); }
+            55% { transform: scale(1); }
+        }
+
+        /* Floating particles around badge */
+        .love-badge::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent 40%, transparent 60%, rgba(255,255,255,0.05));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .love-badge:hover::before {
+            opacity: 1;
+            animation: border-rotate 3s linear infinite;
+        }
+
+        @keyframes border-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         @keyframes fade-in-up {
@@ -943,8 +979,8 @@
             .orbit-ring:nth-child(2) { width: 120px; height: 120px; }
             .orbit-ring:nth-child(3) { width: 80px; height: 80px; }
             .overlay-logo { font-size: 32px; letter-spacing: 6px; }
-            .corner-credit { bottom: 12px; right: 12px; padding: 8px 12px; }
-            .credit-label, .credit-sep, .credit-name { font-size: 9px; letter-spacing: 1px; }
+            .love-badge { bottom: 16px; right: 16px; padding: 8px 16px; font-size: 12px; }
+            .love-badge .heart-hands { font-size: 14px; }
         }
     </style>
     <base target="_blank">
